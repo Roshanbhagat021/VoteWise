@@ -1,13 +1,38 @@
+import axios from 'axios';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate =  useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log('Signing in with:', { email, password });
+    try {
+      const response = await axios.post('http://localhost:8080/user/login', {
+        email,
+        password
+      });
+      console.log(response);
+
+      const { token } = response.data;
+
+      if (token) {
+        localStorage.setItem('authToken', token);
+        navigate('/');  // assuming you have this route
+
+      }
+
+    } catch (error) {
+      if (error.response) {
+        alert(error.response.data.msg || 'Sign in failed.');
+      } else {
+        alert('Network error or server not responding.');
+      }
+      console.error('Sign in error:', error);
+    }
+
   };
 
   return (

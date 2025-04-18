@@ -1,4 +1,5 @@
 import './App.css'
+import Footer from './components/Footer'
 import Header from './components/Header'
 import HeroSection from './components/HeroSection'
 import TrendingPetitionsAndPolls from './components/TrendingPetitionsAndPolls'
@@ -19,6 +20,7 @@ function App() {
          <TrendingPetitionsAndPolls/>
        </>
      )}
+     <Footer/>
    </>
   )
 }

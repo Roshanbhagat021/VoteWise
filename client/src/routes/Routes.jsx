@@ -12,7 +12,7 @@ const routes = [
     children:[
       {
         path: '/',
-        element: <></> // or HomePage component if you make one
+        element: <></> 
       },
       {
         path: '/signin',

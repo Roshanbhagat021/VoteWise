@@ -1,13 +1,27 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from "axios"
 
 function SignUp() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate =  useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:8080/user/register', {
+        name,
+        email,
+        password,
+      });
+
+      console.log('User registered successfully:', response.data);
+      navigate('/signin');
+    } catch (error) {
+      console.error('Error registering user:', error.response?.data || error.message);
+    }
     console.log('Signing up with:', { name, email, password });
   };
 
@@ -35,7 +49,6 @@ function SignUp() {
                   id="name"
                   name="name"
                   type="text"
-                  autoComplete="name"
                   required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
@@ -53,7 +66,6 @@ function SignUp() {
                   id="email"
                   name="email"
                   type="email"
-                  autoComplete="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -71,7 +83,6 @@ function SignUp() {
                   id="password"
                   name="password"
                   type="password"
-                  autoComplete="new-password"
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
