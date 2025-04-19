@@ -1,27 +1,38 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../Contexts/AuthContext'; // adjust path as needed
 
 function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate =  useNavigate();
+  const navigate = useNavigate();
+  const { setIsAuth, setToken, setUserName } = useContext(AuthContext);
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:8080/user/login', {
         email,
         password
       });
-      console.log(response);
 
-      const { token } = response.data;
+      console.log("res", response);
+
+      const { token, name } = response.data;
 
       if (token) {
+        // Save to localStorage
         localStorage.setItem('authToken', token);
-        navigate('/');  // assuming you have this route
+        localStorage.setItem('userName', name);
 
+        // Update context
+        setToken(token);
+        setUserName(name);
+        setIsAuth(true);
+
+        // Redirect
+        navigate('/');
       }
 
     } catch (error) {
@@ -32,8 +43,8 @@ function SignIn() {
       }
       console.error('Sign in error:', error);
     }
-
   };
+
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">

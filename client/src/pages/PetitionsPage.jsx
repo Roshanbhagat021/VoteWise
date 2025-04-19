@@ -1,67 +1,28 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 
 function PetitionsPage() {
 
-  // fake data
-  const petitions = [
-    {
-      id: 1,
-      title: "Save the Local Park from Commercial Development",
-      author: "Green Community",
-      signatures: 1245,
-      goal: 2000,
-      category: "Environment",
-      description: "We urge the city council to reject the proposed commercial development of our beloved community park, which serves as a green oasis for families and wildlife alike."
-    },
-    {
-      id: 2,
-      title: "Demand Better Public Transportation in Downtown",
-      author: "Urban Commuters",
-      signatures: 892,
-      goal: 1500,
-      category: "Transport",
-      description: "Our downtown area suffers from inadequate public transportation options. We demand increased bus frequency and extended service hours to serve all residents."
-    },
-    {
-      id: 3,
-      title: "Support Local Artists with Municipal Grants",
-      author: "Arts Collective",
-      signatures: 567,
-      goal: 1000,
-      category: "Arts",
-      description: "Local artists are the soul of our community. We petition for the establishment of municipal grants to support their work and enrich our cultural landscape."
-    },
-    {
-      id: 4,
-      title: "Implement Recycling Program in All Schools",
-      author: "Eco Students",
-      signatures: 432,
-      goal: 1000,
-      category: "Education",
-      description: "We call on the school district to implement comprehensive recycling programs in all schools to teach environmental responsibility to the next generation."
-    },
-    {
-      id: 5,
-      title: "Lower Speed Limits in Residential Areas",
-      author: "Safe Streets Initiative",
-      signatures: 765,
-      goal: 1200,
-      category: "Safety",
-      description: "To protect our children and make our neighborhoods safer, we demand reduced speed limits and additional traffic calming measures in all residential zones."
-    },
-    {
-      id: 6,
-      title: "Preserve Historic Downtown Buildings",
-      author: "Heritage Society",
-      signatures: 321,
-      goal: 800,
-      category: "Heritage",
-      description: "Our historic downtown buildings are at risk of demolition. We petition for their preservation and adaptive reuse to maintain our city's unique character."
-    }
-  ];
 
-  const categories = ["All", "Environment", "Transport", "Arts", "Education", "Safety", "Heritage"];
+
+  const [petitions,setPetitions] = useState([])
+  console.log('petitions: ', petitions);
+
+
+  useEffect(() => {
+    const fetchPetitions = async () => {
+      try {
+        const response = await axios.get("http://localhost:8080/petition");
+        setPetitions(response.data.petitions);
+      } catch (error) {
+        console.error("Error fetching petitions:", error);
+      }
+    };
+  
+    fetchPetitions(); 
+  }, []);
+
+  const categories = ["All", "Environment","Community", "Transport", "Arts", "Education", "Safety", "Heritage"];
 
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
@@ -106,11 +67,11 @@ function PetitionsPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredPetitions.map((petition) => (
-            <div key={petition.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+            <div key={petition._id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
               <div className="p-6">
                 <span className="inline-block px-3 py-1 text-xs font-semibold text-blue-700 bg-blue-100 rounded-full mb-2">{petition.category}</span>
                 <h3 className="text-xl font-semibold text-gray-800 mb-2">{petition.title}</h3>
-                <p className="text-gray-600 mb-4">By {petition.author}</p>
+                <p className="text-gray-600 mb-4">By {petition.name}</p>
                 <p className="text-gray-700 mb-4 line-clamp-3">{petition.description}</p>
                 <div className="mb-4">
                   <div className="w-full bg-gray-200 rounded-full h-2.5">
@@ -128,12 +89,6 @@ function PetitionsPage() {
                   <button className="py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors duration-300">
                     Sign Now
                   </button>
-                  <Link 
-                    to={`/petitions/${petition.id}`} 
-                    className="py-2 px-4 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 transition-colors duration-300"
-                  >
-                    View Details
-                  </Link>
                 </div>
               </div>
             </div>
