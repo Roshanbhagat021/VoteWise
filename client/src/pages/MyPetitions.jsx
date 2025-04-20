@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../Contexts/AuthContext";
+const VITE_API_BASEURL = import.meta.env.VITE_API_BASEURL;
 
 function MyPetitions() {
   const [petitions, setPetitions] = useState([]);
@@ -10,7 +11,7 @@ function MyPetitions() {
 
   const fetchPetitions = async () => {
     try {
-      const res = await axios.get("http://localhost:8080/petition/my-petitions", {
+      const res = await axios.get(`${VITE_API_BASEURL}/petition/my-petitions`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -21,25 +22,13 @@ function MyPetitions() {
     }
   };
 
-//   const deletePetition = async (id) => {
-//     try {
-//       const res = await axios.delete(`http://localhost:8080/petition/delete/${id}`, {
-//         headers: {
-//           Authorization: `Bearer ${token}`,
-//         },
-//       });
-//       console.log(res.data);
-//       fetchPetitions();
-//     } catch (error) {
-//       console.error("Failed to delete petition", error);
-//     }
-//   };
+
 const deletePetition = async (id) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this petition?");
     if (!confirmDelete) return;
   
     try {
-      const res = await axios.delete(`http://localhost:8080/petition/delete/${id}`, {
+      const res = await axios.delete(`${VITE_API_BASEURL}/petition/delete/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

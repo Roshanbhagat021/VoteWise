@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+const VITE_API_BASEURL = import.meta.env.VITE_API_BASEURL;
 
 function TrendingPetitions() {
   const [trendingPetitions, setPetitions] = useState([]);
@@ -8,7 +9,8 @@ function TrendingPetitions() {
   useEffect(() => {
     const fetchPetitions = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/petition");
+        // const response = await axios.get("http://localhost:8080/petition");
+        const response = await axios.get(`${VITE_API_BASEURL}/petition`);
         const sortedTopPetitions = response.data.petitions
           .sort((a, b) => b.signatures - a.signatures)
           .slice(0, 3);

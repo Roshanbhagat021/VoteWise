@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios"
+const VITE_API_BASEURL = import.meta.env.VITE_API_BASEURL;
 
 function SignUp() {
   const [name, setName] = useState('');
@@ -11,7 +12,7 @@ function SignUp() {
   const handleSubmit = async(e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8080/user/register', {
+      const response = await axios.post(`${VITE_API_BASEURL}/user/register`, {
         name,
         email,
         password,

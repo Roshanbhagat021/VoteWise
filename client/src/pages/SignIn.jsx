@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../Contexts/AuthContext'; // adjust path as needed
+import { AuthContext } from '../Contexts/AuthContext'; 
+const VITE_API_BASEURL = import.meta.env.VITE_API_BASEURL;
 
 function SignIn() {
   const [email, setEmail] = useState('');
@@ -12,7 +13,7 @@ function SignIn() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8080/user/login', {
+      const response = await axios.post(`${VITE_API_BASEURL}/user/login`, {
         email,
         password
       });
@@ -22,16 +23,13 @@ function SignIn() {
       const { token, name } = response.data;
 
       if (token) {
-        // Save to localStorage
         localStorage.setItem('authToken', token);
         localStorage.setItem('userName', name);
 
-        // Update context
         setToken(token);
         setUserName(name);
         setIsAuth(true);
 
-        // Redirect
         navigate('/');
       }
 

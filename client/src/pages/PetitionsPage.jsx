@@ -1,20 +1,24 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../Contexts/AuthContext';
+const VITE_API_BASEURL = import.meta.env.VITE_API_BASEURL;
 
 function PetitionsPage() {
+
+
   const [petitions, setPetitions] = useState([]);
   const [loading, setLoading] = useState(false);
   const [signing, setSigning] = useState(null); 
   const { token } = useContext(AuthContext);
 
-  console.log('petitions: ', petitions);
 
+  
   useEffect(() => {
     const fetchPetitions = async () => {
       try {
         setLoading(true);
-        const response = await axios.get("http://localhost:8080/petition");
+        // const response = await axios.get("http://localhost:8080/petition");
+        const response = await axios.get(`${VITE_API_BASEURL}/petition`);
         setPetitions(response.data.petitions);
       } catch (error) {
         console.error("Error fetching petitions:", error);
@@ -41,7 +45,7 @@ function PetitionsPage() {
     try {
       setSigning(id);
       
-      const response = await axios.post(`http://localhost:8080/petition/sign/${id}`, {}, {
+      const response = await axios.post(`${VITE_API_BASEURL}/petition/sign/${id}`, {}, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
