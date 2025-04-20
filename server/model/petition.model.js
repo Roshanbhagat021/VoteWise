@@ -19,6 +19,10 @@ const petitionSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    signedBy: {
+      type: [String],   
+      default: []
+    },
     signatures: {
       type: Number,
       default: 0,

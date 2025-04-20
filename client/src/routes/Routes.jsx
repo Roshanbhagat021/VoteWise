@@ -1,37 +1,50 @@
 import App from "../App.jsx";
+import ProtectedRoutes from "../components/ProtectedRoutes.jsx";
 import CreatePage from "../pages/CreatePage.jsx";
+import MyPetitions from "../pages/MyPetitions.jsx";
+import PageNotFound from "../pages/PageNotFound.jsx";
 import PetitionsPage from "../pages/PetitionsPage.jsx";
 import SignIn from "../pages/SignIn.jsx";
 import SignUp from "../pages/Signup.jsx";
 
 const routes = [
   {
-    path: '/',
+    path: "/",
     element: <App />,
-    children:[
+    children: [
       {
-        path: '/',
-        element: <></> 
+        path: "/",
+        element: <></>,
       },
       {
-        path: '/signin',
+        path: "/signin",
         element: <SignIn />,
       },
       {
-        path: '/signup',
-        element: <SignUp/>,
+        path: "/signup",
+        element: <SignUp />,
       },
       {
-        path: '/petitions',
-        element: <PetitionsPage/>,
+        path: "/petitions",
+        element: <PetitionsPage />,
       },
-      
       {
-        path: '/create',
-        element: <CreatePage/>,
+        path: "/my-petitions",
+        element: <ProtectedRoutes><MyPetitions /></ProtectedRoutes>,
       },
-     
-    ]
+      {
+        path: "/create",
+        element: (
+          <ProtectedRoutes>
+            <CreatePage />
+          </ProtectedRoutes>
+        ),
+      },
+      {
+        path: "*",
+        element: <PageNotFound />,
+      },
+    ],
   },
 ];
 

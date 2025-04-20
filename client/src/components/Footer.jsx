@@ -3,7 +3,7 @@ import { FaGithub, FaTwitter, FaLinkedin } from 'react-icons/fa';
 
 function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-400 py-4">
+    <footer className="bg-gray-900 text-gray-400 py-4 ">
       <div className="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center">
         
         <div className="text-sm text-center sm:text-left mb-2 sm:mb-0">all rights reserved
@@ -21,8 +21,6 @@ function Footer() {
             <FaLinkedin size={24} />
           </a>
         </div>
-
-       
 
       </div>
     </footer>

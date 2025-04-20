@@ -4,6 +4,7 @@ import { AuthContext } from "../Contexts/AuthContext";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  console.log('menuOpen: ', menuOpen);
   const { isAuth, userName, setIsAuth, setToken, setUserName } =
     useContext(AuthContext);
   const navigate = useNavigate();
@@ -19,6 +20,10 @@ function Header() {
     navigate("/");
   };
 
+  function toggleMenu(e){
+    e.target.classList.contains("ham-menu") ? setMenuOpen(false) : ""
+    
+  }
   return (
     <header className="flex items-center justify-between p-4 shadow-md bg-white fixed w-full top-0 z-50">
       <div className="flex items-center space-x-8">
@@ -62,6 +67,17 @@ function Header() {
             }
           >
             Create
+          </NavLink>
+
+          <NavLink
+            to="/my-petitions"
+            className={({ isActive }) =>
+              `hover:text-blue-600 ${
+                isActive ? "text-blue-600" : "text-gray-600"
+              }`
+            }
+          >
+            My Petitions
           </NavLink>
 
         </nav>
@@ -124,49 +140,48 @@ function Header() {
             Petitions
           </Link>
           <Link
-            to="/polls"
+            to="/my-petitions"
             className="ham-menu text-gray-600 hover:text-blue-600"
           >
-            Polls
+            My Petitions
           </Link>
+         
           <Link
             to="/create"
             className="ham-menu text-gray-600 hover:text-blue-600"
           >
             Create
           </Link>
-          <Link
-            to="/about"
-            className="ham-menu text-gray-600 hover:text-blue-600"
-          >
-            About
-          </Link>
+         
 
           {isAuth ? (
-            <>
-              <span className="px-4 py-2 rounded-full border text-blue-600 border-blue-600 text-center">
+            <div className="flex flex-col ham-menu gap-2"
+            onClick={(e) =>toggleMenu}
+            >
+              <span className="ham-menu px-4 py-2  rounded-full border text-blue-600 border-blue-600 text-center">
                 {userName}
               </span>
               <button
                 onClick={handleLogout}
-                className="px-4 py-2 rounded-full bg-blue-600 text-white hover:bg-blue-700"
+                className="ham-menu px-4 py-2 rounded-full bg-blue-600 text-white hover:bg-blue-700"
               >
                 Logout
               </button>
-            </>
+            </div>
           ) : (
-            <>
-              <Link className="ham-menu" to="/signin">
-                <button className="px-4 py-2 rounded-full bg-blue-600 text-white hover:bg-blue-700">
+            <div className="flex flex-col ham-menu gap-2"
+           >
+              <Link  to="/signin">
+                <button  onClick={toggleMenu} className=" ham-menu px-4 py-2 rounded-full bg-blue-600 text-white hover:bg-blue-700">
                   Sign In
                 </button>
               </Link>
               <Link className="ham-menu" to="/signup">
-                <button className="px-4 py-2 rounded-full border border-blue-600 text-blue-600 hover:bg-blue-50">
+                <button onClick={toggleMenu} className="ham-menu px-4 py-2 rounded-full border border-blue-600 text-blue-600 hover:bg-blue-50">
                   Sign Up
                 </button>
               </Link>
-            </>
+            </div>
           )}
         </div>
       )}
