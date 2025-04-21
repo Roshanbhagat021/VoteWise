@@ -12,9 +12,8 @@ This website is similar to [change.org](https://www.change.org/), here you can <
 3. [Setup Instructions](#Setup-instructions)
 4. [Envirnment Variables](#envirnment-variables)
 5. [Deployment](#deployment)
-6. [Server Details](#server-details)
-7. [How it works](#how-it-works)
-8. [Future Enhancements](#future-enhancements)
+6. [Future Enhancements](#future-enhancements)
+
 
 
 ## Features
@@ -99,6 +98,22 @@ VITE_API_BASEURL = your-server-base-url
 mongoURL = your-mongodb-connection string
 
 ```
+
+
+## Devlopment
+
+  - Frontend deployed in [Netlify](https://www.netlify.com/)
+  - Backend deployed in [Render](https://render.com/)
+
+
+
+## Future Enhancements
+
+- Add polls feature to website
+- Dark mode light mode
+
+
+
 
 
 
