@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Contexts/AuthContext';
+const VITE_API_BASEURL = import.meta.env.VITE_API_BASEURL;
 
 function CreatePage() {
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ function CreatePage() {
     }
 
     try {
-      const response = await fetch("http://localhost:8080/petition/create", {
+      const response = await fetch(`${VITE_API_BASEURL}/petition/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
