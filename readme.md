@@ -1,4 +1,4 @@
-<h1 style="display:flex; gap:1rem;color:#155dfc;">VOTEWISE <img width="40px" src="./client/public/image.png" alt="desktop view" ></h1>
+<h1 style="display:flex; gap:1rem;color:#155dfc;">VOTEWISE <img width="40px" style="background-color:white" src="./client/public/image.png" alt="desktop view" ></h1>
 
 
 This website is similar to [change.org](https://www.change.org/), here you can <b>create petitions and sign others petitions</b>.
