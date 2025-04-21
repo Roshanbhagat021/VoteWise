@@ -8,7 +8,7 @@ This website is similar to [change.org](https://www.change.org/), here you can <
 
 ## Table of Contents
 1. [Features](#features)
-2. [Tech Stack](#technologies-used)
+2. [Tech Stack](#tech-stack)
 3. [Setup Instructions](#Setup-instructions)
 4. [Envirnment Variables](#envirnment-variables)
 5. [Deployment](#deployment)
@@ -52,13 +52,13 @@ This website is similar to [change.org](https://www.change.org/), here you can <
 
    ### Install Dependencies 
 
-   #### For Frontend
+   For Frontend
 
    ```bash
    cd client
    npm install
    ```
-   #### For Backend
+   For Backend
 
    ```bash
    cd server
@@ -67,13 +67,13 @@ This website is similar to [change.org](https://www.change.org/), here you can <
 
    ### Run Localy
 
-   #### For Frontend 
+   For Frontend 
 
    ```bash
    cd client
    npm run dev
    ```
-   #### For Backend
+   For Backend
 
    ```bash
    cd server
@@ -86,6 +86,8 @@ This website is similar to [change.org](https://www.change.org/), here you can <
 
    Visit <code>http://localhost:5173</code> in your browser to access the website. 
 
+
+## Envirnment Variables
 
 
 
