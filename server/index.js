@@ -24,7 +24,7 @@ app.listen(port,async()=>{
     try {
         await connection
         console.log("Connected to the DB");
-        console.log("Server is Running on 8080");
+        console.log(`Server is Running on http://localhost:${port}`);
     } catch (error) {
         console.log(error);
     }
