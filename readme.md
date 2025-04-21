@@ -8,7 +8,7 @@ This website is similar to [change.org](https://www.change.org/), here you can <
 
 ## Table of Contents
 1. [Features](#features)
-2. [Teck Stack](#technologies-used)
+2. [Tech Stack](#technologies-used)
 3. [Setup Instructions](#Setup-instructions)
 4. [Envirnment Variables](#envirnment-variables)
 5. [Deployment](#deployment)
@@ -22,5 +22,51 @@ This website is similar to [change.org](https://www.change.org/), here you can <
 - Create / Delete your Petitions
 - Sign others Petitions
 - Filter Petitions by there tag names
+
+
+## Tech Stack
+- ### Frontend
+   - React 
+   - Tailwind
+
+- ### Backend
+   - MongoDb(Database)   
+   - Express
+   - Node.js
+   - Mongoose
+
+- ### Deployment 
+   - Netlify (For Frontend)   
+   - Render (For Backend)   
+
+## Setup Instructions
+   <h3>Prerequisites</h3>   
+   
+   1. Install [Node.js](https://nodejs.org/en) and npm.
+
+   ### Clone the Repository
+   ```
+   git clone https://github.com/Roshanbhagat021/VoteWise.git
+   cd VoteWise
+   ```
+
+   ### Install Dependencies for Frontend
+
+   ```bash
+   <!-- From root dir (VoteWise) -->
+   cd client
+   npm install
+   ```
+   ### Install Dependencies for Backend
+
+   ```bash
+   <!-- From root dir (VoteWise) -->
+   cd server
+   npm install
+   ```
+
+
+
+
 
 
