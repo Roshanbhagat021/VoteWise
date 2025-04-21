@@ -55,14 +55,12 @@ This website is similar to [change.org](https://www.change.org/), here you can <
    #### For Frontend
 
    ```bash
-   <!-- From root dir (VoteWise) -->
    cd client
    npm install
    ```
    #### For Backend
 
    ```bash
-   <!-- From root dir (VoteWise) -->
    cd server
    npm install
    ```
@@ -70,23 +68,21 @@ This website is similar to [change.org](https://www.change.org/), here you can <
    ### Run Localy
 
    #### For Frontend 
-   
+
    ```bash
-   <!-- From root dir (VoteWise) -->
    cd client
    npm run dev
    ```
    #### For Backend
 
    ```bash
-   <!-- From root dir (VoteWise) -->
    cd server
    npm start
    ```
 
-   ```
-   Note: Server will run on http://localhost:8080 locally.
-   ```
+   > **Note**
+   > Note: Server will run on http://localhost:8080 locally.
+   
 
    Visit <code>http://localhost:5173</code> in your browser to access the website. 
 
