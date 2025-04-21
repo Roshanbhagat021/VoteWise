@@ -80,7 +80,7 @@ This website is similar to [change.org](https://www.change.org/), here you can <
    npm start
    ```
 
-   > **Note**
+   >[!NOTE]
    > Note: Server will run on http://localhost:8080 locally.
    
 
@@ -88,6 +88,17 @@ This website is similar to [change.org](https://www.change.org/), here you can <
 
 
 ## Envirnment Variables
+
+This project uses a <code>.env</code> file to securely store API keys. Create a <code>.env</code>  file in the client and server directory with the following keys:
+
+```
+<!-- For Frontend -->
+VITE_API_BASEURL = your-server-base-url
+
+<!-- For Backend -->
+mongoURL = your-mongodb-connection string
+
+```
 
 
 
